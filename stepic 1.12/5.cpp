@@ -8,50 +8,49 @@ using namespace std;
 
 struct man {
 	string name, surname;
-	int x, y, z, num;
-	double mid;
+	int x, y, z, num, tr;
 };
 
 bool cmp(man a, man b){
-	if(a.mid == b.mid){
+	if(a.tr == b.tr){
 		return a.num < b.num;
 	}	else
-	return a.mid > b.mid;
+	return a.tr > b.tr;
 }
 
 int main() {
 	int n;
-	
+
 	cin >> n ;
-	
+
 	vector <man> arr(n);
-	
+
 	for (int i = 0; i < n; i++){
 		man temp;
 		string tn, ts;
 		int tx, ty, tz;
-		
+
 		cin >> ts >> tn;
 		cin >> tx >> ty >> tz;
-		
+
 		temp.surname = ts;
 		temp.name = tn;
-		
+
 		temp.x = tx;
 		temp.y = ty;
 		temp.z = tz;
-		temp.mid = (tx + ty + tz) / 3;
+		temp.tr = tx + ty + tz;
 		temp.num = i;
-		
+
 		arr[i] = temp;
 	}
-	
+
 	sort(arr.begin(), arr.end(), cmp);
-	
+
 	for(int i = 0; i < n; i++){
 		man t = arr[i];
 		cout << t.surname << " " << t.name << endl;
 	}
-	
+
 	return 0;
 }
